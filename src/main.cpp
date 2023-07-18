@@ -232,16 +232,22 @@ int main()
         projection_1 = camera->getProjection() * camera->getView();
 
 
-        //lineShader.use();
-        //lineShader.uniformMatrix("projection", projection_1);
-        //lineBatch->line(
-        //    0.0f, 0.0f, 0.0f,
-        //    0.0f, 10.0f, 0.0f,
+        lineShader.use();
 
-        //    1.0f, 0.0f, 0.0f, 1.0f
-        //);
+
+        lineShader.setMat4("projection", projection_1);
+        lineShader.setMat4("view", camera->getView());
+
+
+        /*lineBatch->line(
+            0.0f, 0.0f, 0.0f,
+            0.0f, 10.0f, 0.0f,
+
+            1.0f, 0.0f, 0.0f, 1.0f
+        );*/
+        float* temp_2 = lineBatch->getBuffer();
         //lineBatch->render();
-
+        //Mesh pop_1(temp_2, sizeof(temp_2), { 3,4,0 });
 
 
         Window::swapBuffers();

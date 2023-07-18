@@ -6,6 +6,7 @@ class Mesh;
 
 class LineBatch {
 	Mesh* mesh;
+	int* attrs;
 	float* buffer;
 	size_t index;
 	size_t capacity;
@@ -15,6 +16,6 @@ public:
 
 	void line(float x1, float y1, float z1, float x2, float y2, float z2,
 		float r, float g, float b, float a);
-
+	float* getBuffer() { return buffer; }
 	void render();
 };

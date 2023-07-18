@@ -13,7 +13,7 @@ public:
 	Mesh(const float* buffer, size_t vertices, const int* attrs);
 	~Mesh();
 
-	void reload(const float* buffer, size_t vertices);
+	void reload(const float* buffer, size_t vertices, const int* attrs);
 	void draw(unsigned int primitive);
 
 };

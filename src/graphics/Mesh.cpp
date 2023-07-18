@@ -31,11 +31,20 @@ Mesh::~Mesh() {
 }
 
 
-void Mesh::reload(const float* buffer, size_t vertices) {
+void Mesh::reload(const float* buffer, size_t vertices, const int* attrs) {
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * vertices * vertiexSize, buffer, GL_STATIC_DRAW);
-	this->vertices = vertices;
+
+	
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * vertices * vertiexSize, buffer, GL_STATIC_DRAW);
+		this->vertices = vertices;
+		int offset = 0;
+		for (int i = 0; attrs[i]; i++) {
+			int size = attrs[i];
+			glVertexAttribPointer(i, attrs[i], GL_FLOAT, GL_FALSE, vertiexSize * sizeof(float), (void*)(offset * sizeof(float)));
+			glEnableVertexAttribArray(i);
+			offset += size;
+		}
 }
 
 
